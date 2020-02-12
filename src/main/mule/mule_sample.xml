@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="3052bc85-2416-4db8-8e9e-7991eb535962" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="7dfc4718-054f-4395-825f-71231b97e2aa" >
+		<http:request-connection host="dummy.restapiexample.com" />
+	</http:request-config>
+	<http:request-config name="HTTP_Request_configuration1" doc:name="HTTP Request configuration" doc:id="14c6c0e7-9deb-4832-aaba-8bc7cfd43fb8" >
+		<http:request-connection host="dummy.restapiexample.com" />
+	</http:request-config>
+	<flow name="mule_sampleFlow" doc:id="864d60a2-8078-4de3-95c8-974c422c66b7" >
+		<http:listener doc:name="Listener" doc:id="cbaf6389-d5c8-4657-8764-b55830a521ee" config-ref="HTTP_Listener_config" path="/demo" allowedMethods="GET"/>
+		<http:request method="GET" doc:name="Request" doc:id="89a0ddfe-3418-44f6-898e-e03ff6a6762d" config-ref="HTTP_Request_configuration1" path="/api/v1/employees" responseTimeout="60"/>
+	</flow>
+</mule>
